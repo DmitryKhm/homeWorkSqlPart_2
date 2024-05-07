@@ -2,8 +2,8 @@ SELECT
     c.client_id,
     c.first_name,
     c.last_name,
-    SUM(CASE WHEN t.amount > 0 THEN t.amount ELSE 0 END) AS credit,
-    SUM(CASE WHEN t.amount < 0 THEN ABS(t.amount) ELSE 0 END) AS debit
+    SUM(CASE WHEN t.amount > 0 THEN t.amount ELSE 0 END) AS debit,
+    SUM(CASE WHEN t.amount < 0 THEN ABS(t.amount) ELSE 0 END) AS credit
 FROM client c
          JOIN transaction t ON c.client_id = t.client_id
 GROUP BY c.client_id, c.first_name, c.last_name
